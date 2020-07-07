@@ -14,7 +14,7 @@ TVMaze is a client application for TVMAZE on Android, built using Kotlin.
 - Search for movies
 - View movie details like release date, summery, number of seasons and episodes, network and tv show's status right inside the app.
 
-TVMazeuses the TVMAZE API but is not endorsed or certified by TVMAZE:
+TVMaze uses the TVMAZE API but is not endorsed or certified by TVMAZE:
 - https://www.themoviedb.org/documentation/api/terms-of-use
 
 # License
