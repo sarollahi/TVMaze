@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TVMaze</string>
+    <string name="searsh">Search</string>
+    <string name="retry">retry</string>
+    <string name="error">Something went wrong! please try again.</string>
+    <string name="seasons">" "Season(s)</string>
+    <string name="total_time">Total Time" "</string>
+    <string name="episodes">" "Episode(s)</string>
+    <string name="episode_time">Episode Time" "</string>
+    <string name="search_example">Ex: saknad</string>
+    <string name="search">SEARCH</string>
+    <string name="hint_text_right">Use</string>
+    <string name="hint_text_left">to find your favorite tv show</string>
+    <string name="hour">h</string>
+    <string name="minute">m</string>
+</resources>
