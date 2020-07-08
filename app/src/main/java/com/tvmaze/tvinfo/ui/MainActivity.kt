@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        searchQuery.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            getMoviesOnEnter(v, keyCode, event)
-        })
+        searchQuery.setOnKeyListener { v, keyCode, event ->
+            getMoviesOnEnter(keyCode, event)
+        }
 
         val retryClick = findViewById<Button>(R.id.btn_retry)
         retryClick?.setOnClickListener {
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Get movies when user release Enter key
-    fun getMoviesOnEnter(v:View, keyCode:Int, event:KeyEvent): Boolean{
+    fun getMoviesOnEnter(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
             tvShowName = searchQuery.text.toString()
             if (tvShowName != "") {
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             image = ""
                         }
-                        var movie =
+                        val movie =
                             Movie(
                                 item_details.getString("id"),
                                 item_details.getString("name"),
@@ -103,8 +103,7 @@ class MainActivity : AppCompatActivity() {
                             )
 
                         movieList.add(movie)
-                        movieRecyclerView.visibility = View.VISIBLE
-                        logoCard.visibility = View.GONE
+                        showResult()
                     }
                 } else {
                     movieRecyclerView.visibility = View.GONE
@@ -121,16 +120,31 @@ class MainActivity : AppCompatActivity() {
             },
             Response.ErrorListener { error ->
                 Log.d("JSON_ERROR", error.toString())
-                errorCard.visibility = View.VISIBLE
-                progressbar.visibility = View.GONE
+                showError()
             }
         )
         // Add the request to the RequestQueue.
         queue.add(jsonArrayRequest)
-        //initialize the progress dialog and show it
+        hideLogo()
+        return movieList
+    }
+
+    //Make logo card hidden
+    private fun hideLogo() {
         logoCard.visibility = View.GONE
         progressbar.visibility = View.VISIBLE
-        return movieList
+    }
+
+    //Make error card visible
+    private fun showError() {
+        errorCard.visibility = View.VISIBLE
+        progressbar.visibility = View.GONE
+    }
+
+    //Make recyclerview visible
+    private fun showResult() {
+        movieRecyclerView.visibility = View.VISIBLE
+        logoCard.visibility = View.GONE
     }
 
     //Manage recyclerView layout
